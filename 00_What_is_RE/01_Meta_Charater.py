@@ -224,3 +224,24 @@ print(p)
 p = re.findall("\?", "안녕하세요?")
 print(p)
 # ['?']
+
+# 12. 그룹 (...)
+# 괄호 안에 있는 정규식과 일치하며, 그룹의 시작과 끝을 나타낸다.
+
+m = re.match("([a-z]+)([0-9]+)", "abc123def")
+print(m)
+# <re.Match object; span=(0, 6), match='abc123'>
+print(m.group())
+# abc123
+print(m.groups())
+# ('abc', '123')
+
+# 13. 정규식 이름 정해주기 (?P<name>...)
+# 일반 괄호 사용과 유사하지만, ...과 일치하는 부분 문자열은 name을 통해 다시 사용할 수 있다.
+# 자세한 사용법은 다음과 같다. 잘 모르겠다면 구글링을 통해 이해를 더 해보자..
+
+p = re.search(r'(?P<num>\d+)', 'foo123qux')
+print(p)
+# <re.Match object; span=(3, 6), match='123'>
+print(p.expand(r'--- \g<num> ---'))
+# --- 123 ---
